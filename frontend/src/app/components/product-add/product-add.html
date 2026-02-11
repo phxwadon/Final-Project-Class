@@ -1,1 +1,34 @@
-<p>product-add works!</p>
+<div class="container mt-4">
+  <h3>เพิ่มสินค้า (แบบไม่ใช้ tag form)</h3>
+
+  <div class="mb-3">
+    <label>ชื่อสินค้า:</label>
+    <input type="text" 
+           name="productName"
+           [(ngModel)]="newProduct.name" 
+           required 
+           minlength="3"
+           class="form-control"
+           #nameField="ngModel"> <div *ngIf="nameField.invalid && nameField.touched" class="text-danger">
+      <small *ngIf="nameField.errors?.['required']">กรุณากรอกชื่อสินค้า</small>
+      <small *ngIf="nameField.errors?.['minlength']">ชื่อต้องยาว 3 ตัวอักษรขึ้นไป</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label>ราคา:</label>
+    <input type="number" 
+           name="productPrice"
+           [(ngModel)]="newProduct.price" 
+           required
+           class="form-control"
+           #priceField="ngModel">
+  </div>
+
+  <button type="button" 
+          class="btn btn-primary" 
+          (click)="saveData()"
+          [disabled]="nameField.invalid || priceField.invalid"> 
+    บันทึกข้อมูล
+  </button>
+</div>

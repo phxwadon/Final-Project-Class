@@ -2,7 +2,7 @@
     <h2>รายการสินค้าทั้งหมด</h2>
 
     <div class="product-grid">
-        @for(item of products; track item._id) {
+        @for (item of (products$ | async); track item._id) {
             <div class="product-card">
                 <h3>{{ item.name }}</h3>
                 <p>ราคา: {{ item.price | number }} บาท</p>
@@ -11,4 +11,4 @@
             <p>ไม่มีสินค้าในระบบ</p>
         }
     </div>
-</div>
+</div> 

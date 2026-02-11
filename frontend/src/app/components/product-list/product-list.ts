@@ -1,26 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { CommonModule, AsyncPipe } from '@angular/common';
 import { ProductSevice } from '../../services/product';
 import { Product } from '../../models/product';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule],
+  imports: [CommonModule, AsyncPipe],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })
-export class ProductList implements OnInit{
-  products: Product[] = [];
+export class ProductList {
+  // 1. ประกาศตัวแปรไว้ก่อน (ยังไม่ต้องใส่ค่า)
+  products$: Observable<Product[]>;
 
-  constructor(private productService: ProductSevice) {}
-
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-        console.log('รับข้อมูลสำเร็จ', this.products);
-      },
-      error: (err) => console.error('Error:', err)
-    });
+  constructor(private productService: ProductSevice) {
+    // 2. กำหนดค่าที่นี่ หลังจากที่ productService ถูก Inject เข้ามาแล้ว
+    this.products$ = this.productService.getProducts();
   }
 }
+
