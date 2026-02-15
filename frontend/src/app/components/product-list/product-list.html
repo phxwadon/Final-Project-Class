@@ -4,6 +4,11 @@
     <div class="product-grid">
         @for (item of (products$ | async); track item._id) {
             <div class="product-card">
+                <img [src]="'http://localhost:5000/api/products/image/' + item._id" 
+                class="card-img-top" 
+                alt="รูปสินค้า"
+                style="height: 200px; object-fit: cover;"
+                (error)="$event.target.src = 'assets/no-image.png'">
                 <h3>{{ item.name }}</h3>
                 <p>ราคา: {{ item.price | number }} บาท</p>
             </div>
@@ -11,4 +16,4 @@
             <p>ไม่มีสินค้าในระบบ</p>
         }
     </div>
-</div> 
+</div>
