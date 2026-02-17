@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule, formatCurrency } from '@angular/common';
 import { ProductSevice } from '../../services/product';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './product-add.html',
   styleUrl: './product-add.css',
 })
@@ -37,7 +37,7 @@ export class ProductAdd {
 
     this.productService.addProduct(formData).subscribe({
       next: (res) => {
-        alert('เพิ่มสอนค้าสำเร็จ');
+        alert('เพิ่มสินค้าสำเร็จ');
         this.router.navigate(['/']);
       },
       error: (err) => console.error(err)
