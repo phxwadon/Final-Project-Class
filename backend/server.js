@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const mongoURI = 'mongodb://localhost:27017/Final-Market';
+const mongoURI = process.env.MONGO_URI;
 mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log('MongoDB Connection Error:', err));
@@ -17,7 +17,7 @@ const productRoutes = require('./routes/productRoutes');
 app.use('/api/products', productRoutes);
 
 
-const PORT = 5000;
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
