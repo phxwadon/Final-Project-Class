@@ -9,7 +9,9 @@ app.use(cors());
 app.use(express.json());
 
 const mongoURI = process.env.MONGO_URI;
-mongoose.connect(mongoURI)
+mongoose.connect(mongoURI, {
+    serverSelectionTimeoutMS: 5000
+})
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log('MongoDB Connection Error:', err));
 
