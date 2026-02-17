@@ -40,6 +40,7 @@ router.get('/image/:id', async (req, res) => {
         const product = await Product.findById(req.params.id);
         if (product && product.image && product.image.data) {
             res.set('Content-type', product.image.contentType);
+            res.set('Cache-Control', 'public, max-age=86400');
             return res.send(product.image.data);
         }
         res.status(404).send('Image not found!!');
