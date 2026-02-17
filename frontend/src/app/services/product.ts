@@ -7,7 +7,7 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 export class ProductSevice {
-  private readonly apiUrl = 'http://localhost:5000/api/products';
+  private readonly apiUrl = 'https://final-project-class.onrender.com/api/products';
 
   constructor(private http: HttpClient) {}
 
